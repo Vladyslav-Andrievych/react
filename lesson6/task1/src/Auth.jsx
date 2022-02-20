@@ -12,23 +12,17 @@ class Auth extends Component {
     };
   }
 
-  handleLogin = () => {
+  handleLogStatusChange = () => {
     this.setState({
-      isLoggedIn: true,
-    });
-  };
-
-  handleLogout = () => {
-    this.setState({
-      isLoggedIn: false,
+      isLoggedIn: !this.state.isLoggedIn,
     });
   };
 
   render() {
     const button = this.state.isLoggedIn ? (
-      <Logout onLogout={this.handleLogout} />
+      <Logout onLogout={this.handleLogStatusChange} />
     ) : (
-      <Login onLogin={this.handleLogin} />
+      <Login onLogin={this.handleLogStatusChange} />
     );
 
     return (

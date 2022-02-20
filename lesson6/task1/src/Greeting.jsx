@@ -3,7 +3,10 @@ import GuestGreeting from './GuestGreeting.jsx';
 import UserGreeting from './UserGreeting.jsx';
 
 const Greeting = (props) => {
-  return <>{props.isLoggedIn ? <UserGreeting /> : <GuestGreeting />} </>;
+  if (props.isLoggedIn) {
+    return <UserGreeting />;
+  }
+  return <GuestGreeting />;
 };
 
 export default Greeting;
