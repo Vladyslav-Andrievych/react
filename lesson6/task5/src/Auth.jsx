@@ -8,47 +8,37 @@ class Auth extends Component {
     super(props);
 
     this.state = {
-      stage: 'Login',
-      animationIteration: 0,
+      isLoggedIn: null,
+      processing: false,
     };
   }
 
   onLogin = () => {
     this.setState({
-      stage: 'Spinner',
+      processing: true,
     });
   };
 
-  onAnimationIteration = (currentValue) => {
-    currentValue += 1;
-    //animation duration in index.scss === 0.5s, so must be 4 iterations for 2 seconds of show spinner
-    currentValue === 4
-      ? this.setState({ stage: 'Logout', animationIteration: 0 })
-      : this.setState({ animationIteration: currentValue });
+  onLoggedIn = () => {
+    this.setState({
+      isLoggedIn: true,
+      processing: false,
+    });
   };
 
   onLogout = () => {
     this.setState({
-      stage: 'Login',
+      isLoggedIn: false,
     });
   };
 
   render() {
-    switch (this.state.stage) {
-      case 'Login':
-        return <Login onLogin={this.onLogin} />;
-      case 'Spinner':
-        return (
-          <Spinner
-            onAnimationIteration={() =>
-              this.onAnimationIteration(this.state.animationIteration)
-            }
-            size={20}
-          />
-        );
-      case 'Logout':
-        return <Logout onLogout={this.onLogout} />;
+    if (this.state.processing) {
+      return <Spinner size={20} onLoggedIn={this.onLoggedIn} />;
+    } else if (this.state.isLoggedIn) {
+      return <Logout onLogout={this.onLogout} />;
     }
+    return <Login onLogin={this.onLogin} />;
   }
 }
 
