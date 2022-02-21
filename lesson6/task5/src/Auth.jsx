@@ -13,20 +13,19 @@ class Auth extends Component {
     };
   }
 
-  onLogin = () => {
+  login = () => {
     this.setState({
       processing: true,
     });
+    setTimeout(() => {
+      this.setState({
+        processing: false,
+        isLoggedIn: true,
+      });
+    }, 2000);
   };
 
-  onLoggedIn = () => {
-    this.setState({
-      isLoggedIn: true,
-      processing: false,
-    });
-  };
-
-  onLogout = () => {
+  logout = () => {
     this.setState({
       isLoggedIn: false,
     });
@@ -34,11 +33,11 @@ class Auth extends Component {
 
   render() {
     if (this.state.processing) {
-      return <Spinner size={20} onLoggedIn={this.onLoggedIn} />;
+      return <Spinner size={20} />;
     } else if (this.state.isLoggedIn) {
-      return <Logout onLogout={this.onLogout} />;
+      return <Logout onLogout={this.logout} />;
     }
-    return <Login onLogin={this.onLogin} />;
+    return <Login onLogin={this.login} />;
   }
 }
 
