@@ -1,5 +1,13 @@
 import React from 'react';
-import { formatDate, formatTime, formatNumbers } from './formatters.js';
+import moment from 'moment';
+
+const formatDate = (dateObj) => moment(dateObj).format('DD MMM');
+
+const formatTime = (dateObj) => moment(dateObj).locale('uk').format('LT');
+
+const numbersFormatter = new Intl.NumberFormat('en-GB');
+
+const formatNumbers = (number) => numbersFormatter.format(number);
 
 const User = ({ from, to, amount, rate, time }) => {
   return (
