@@ -1,16 +1,20 @@
 import React from 'react';
-import { formatDate, formatTime, formatNumbers } from './formatters.js';
+import moment from 'moment';
+
+const formatter = new Intl.NumberFormat('en-GB');
 
 const Transaction = ({ from, to, amount, rate, time }) => {
+  const momentDate = moment(time);
+
   return (
     <li className="transaction">
-      <span className="transaction__date">{formatDate(time)}</span>
-      <span className="transaction__time">{formatTime(time)}</span>
+      <span className="transaction__date">{momentDate.format('DD MMM')}</span>
+      <span className="transaction__time">{momentDate.format('HH:mm')}</span>
       <span className="transaction__assets">
         {from} → {to}
       </span>
-      <span className="transaction__rate">{formatNumbers(rate)}</span>
-      <span className="transaction__amount">{formatNumbers(amount)}</span>
+      <span className="transaction__rate">{formatter.format(rate)}</span>
+      <span className="transaction__amount">{formatter.format(amount)}</span>
     </li>
   );
 };
