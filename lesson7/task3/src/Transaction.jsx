@@ -1,15 +1,7 @@
 import React from 'react';
-import moment from 'moment';
+import { formatDate, formatTime, formatNumbers } from './formatters.js';
 
-const formatDate = (dateObj) => moment(dateObj).format('DD MMM');
-
-const formatTime = (dateObj) => moment(dateObj).locale('uk').format('LT');
-
-const numbersFormatter = new Intl.NumberFormat('en-GB');
-
-const formatNumbers = (number) => numbersFormatter.format(number);
-
-const User = ({ from, to, amount, rate, time }) => {
+const Transaction = ({ from, to, amount, rate, time }) => {
   return (
     <li className="transaction">
       <span className="transaction__date">{formatDate(time)}</span>
@@ -23,4 +15,4 @@ const User = ({ from, to, amount, rate, time }) => {
   );
 };
 
-export default User;
+export default Transaction;
