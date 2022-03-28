@@ -8,10 +8,10 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.fetchData(this.props.userName);
+    this.fetchUserData(this.props.userId);
   }
 
-  fetchData = (userId) => {
+  fetchUserData = (userId) => {
     fetch(`https://api.github.com/users/${userId}`)
       .then((response) => response.json())
       .then((userData) =>
