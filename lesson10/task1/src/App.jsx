@@ -13,11 +13,7 @@ class App extends Component {
 
   fetchData = (userId) => {
     fetch(`https://api.github.com/users/${userId}`)
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-      })
+      .then((response) => response.json())
       .then((userData) =>
         this.setState({
           userData,
