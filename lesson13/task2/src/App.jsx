@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Home from './Home.jsx';
 import Products from './Products.jsx';
 
@@ -15,10 +15,12 @@ const App = () => {
             <Link to="/products">Products</Link>
           </li>
         </ul>
-        <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route path="/products/*" element={<Products />}></Route>
-        </Routes>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/products" component={Products} />
+        </Switch>
       </BrowserRouter>
     </div>
   );
