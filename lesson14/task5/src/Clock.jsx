@@ -21,15 +21,11 @@ const Clock = ({ location, offset }) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const newTime = new Date(time.getTime() + 1000);
-
-      setTime(newTime);
+      setTime((prevTime) => new Date(prevTime.getTime() + 1000));
     }, 1000);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  });
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className="clock">
