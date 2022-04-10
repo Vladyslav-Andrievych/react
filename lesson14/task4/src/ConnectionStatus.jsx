@@ -21,7 +21,7 @@ const ConnectionStatus = () => {
 
   return (
     <div className={classNames('status', { status_offline: !isOnline })}>
-      {isOnline ? 'Online' : 'Offline'}
+      {isOnline ? 'online' : 'offline'}
     </div>
   );
 };
